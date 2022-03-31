@@ -10,10 +10,10 @@ def train(data_path, model_name, data_type):
     if data_type == "EDA":
         sig_name = "EDA_microsiemens"
         train_data = dataset.create_data(sig_name, train_path)
-        xxx = np.array(np.array([3.4, 4, 3.7])).astype(np.float32)
+        # xxx = np.array(np.array([3.4, 4, 3.7])).astype(np.float32)
         x_train = np.asarray(train_data[0]).astype(np.float32)
         y_train = np.asarray(train_data[1]).astype(np.int32)
-        # train_input = train_data[0].astype(np.float32)
+        train_input = train_data[0].astype(np.float32)
         validation_data = dataset.create_data(sig_name, validation_path)
         # (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
         # train_labels = train_labels[:1000]
