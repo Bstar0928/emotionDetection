@@ -12,22 +12,30 @@ def train(data_path, model_name, data_type):
         validation_data = dataset.create_data(sig_name, validation_path)
         # flatten model.
         model = tf.keras.models.Sequential([
-            tf.keras.layers.Dense(512, activation='relu', input_shape=(784, )),
+            tf.keras.layers.Dense(256, activation='relu', input_shape=(512, )),
             tf.keras.layers.Dense(128, activation='relu'),
+            tf.keras.layers.Dense(64, activation='relu'),
+            tf.keras.layers.Dense(32, activation='relu'),
             tf.keras.layers.Dense(10)
         ])
         model.compile(
             optimizer=tf.keras.optimizers.Adam(0.001),
             loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-            metrics = [tf.keras.metrics.Accuracy(), tf.keras.metrics.Recall(), tf.keras.metrics.Precision(), tf.keras.metrics.Accuracy()],
+            metrics = [tf.keras.metrics.Accuracy(), tf.keras.metrics.Recall(), tf.keras.metrics.Precision()],
         )
+        # model.compile(
+        #     optimizer=tf.keras.optimizers.Adam(0.001),
+        #     loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+        #     metrics = [tf.keras.metrics.SparseCategoricalAccuracy()],
+        # )
         model.summary()
         model.fit(
-            train_data,
-            epochs=5,
+            train_data[0],
+            train_data[1],
+            epochs=20,
             validation_data = validation_data,
         )
-        model.save(data_type.lower()+'.h5')
+        model.save(model_name+'h5')
         # # case of cnn model.
         # model = tf.keras.models.Sequential([
         #     tf.keras.layers.Conv2D()

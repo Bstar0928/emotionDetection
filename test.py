@@ -1,16 +1,15 @@
 import dataset
-
+import os
+import numpy as np
+import tensorflow as tf
 
 def test(data_path, model_name, data_type):
     test_path = os.path.join(data_path, 'Testing')
     if data_type == "EDA":
         sig_name = "EDA_microsiemens"
-        (in_data, out_data) = dataset.create_data(sig_name, train_path)
-        nd_in_data = np.array(in_data)
-        print(type(nd_in_data[0]))
-        nd_out_data = np.array(out_data, dtype='float32')
-        model = tf.keras.models.load_model(data_type.lower()+'h5')
-        loss, acc = model.evaluate(test_in_data, test_out_data, verbose=2)
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
 
     elif data_type == "mmhg":
         sig_name = "BP_mmHg"
