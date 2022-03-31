@@ -2,7 +2,6 @@ import numpy as np
 import tensorflow as tf
 import os
 import dataset
-# import tensorflow_datasets as tfds
 
 def train(data_path, model_name, data_type):
     train_path = os.path.join(data_path, 'Training')
@@ -10,19 +9,7 @@ def train(data_path, model_name, data_type):
     if data_type == "EDA":
         sig_name = "EDA_microsiemens"
         train_data = dataset.create_data(sig_name, train_path)
-        # xxx = np.array(np.array([3.4, 4, 3.7])).astype(np.float32)
-        x_train = np.asarray(train_data[0]).astype(np.float32)
-        y_train = np.asarray(train_data[1]).astype(np.int32)
-        train_input = train_data[0].astype(np.float32)
         validation_data = dataset.create_data(sig_name, validation_path)
-        # (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
-        # train_labels = train_labels[:1000]
-        # test_labels = test_labels[:1000]
-
-        # train_images = train_images[:1000].reshape(-1, 28 * 28) / 255.0
-        # test_images = test_images[:1000].reshape(-1, 28 * 28) / 255.0
-
-        # print(train_data[0][0][0])
         # flatten model.
         model = tf.keras.models.Sequential([
             tf.keras.layers.Dense(512, activation='relu', input_shape=(784, )),
@@ -36,8 +23,7 @@ def train(data_path, model_name, data_type):
         )
         model.summary()
         model.fit(
-            x_train,
-            y_train,
+            train_data,
             epochs=5,
             validation_data = validation_data,
         )
