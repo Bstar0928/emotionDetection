@@ -10,23 +10,46 @@ def test(data_path, model_name, data_type):
         test_data = dataset.create_data(sig_name, test_path)
         model = tf.keras.models.load_model(model_name+'h5')
         loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
-
     elif data_type == "mmhg":
         sig_name = "BP_mmHg"
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)        
     elif data_type == "mean":
         sig_name = "LA Mean BP_mmHg"
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
     elif data_type == "sys":
         sig_name = "LA Systolic BP_mmHg"
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
     elif data_type == "rate":
         sig_name = "Pulse Rate_BPM"
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
     elif data_type == "DIA":
         sig_name = "BP Dia_mmHg"
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
     elif data_type == "volt":
         sig_name = "Resp_Volts"
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
     elif data_type == "resp":
         sig_name = "Respiration Rate_BPM"
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
     elif data_type == "all":
         sig_name = "All Signals"
+        test_data = dataset.create_data(sig_name, test_path)
+        model = tf.keras.models.load_model(model_name+'h5')
+        loss, acc = model.evaluate(test_data[0], test_data[1], verbose=2)
     else:
         print("Not specified data_type parameter")
-        return 0
+        

@@ -23,11 +23,6 @@ def train(data_path, model_name, data_type):
             loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
             metrics = [tf.keras.metrics.Accuracy(), tf.keras.metrics.Recall(), tf.keras.metrics.Precision()],
         )
-        # model.compile(
-        #     optimizer=tf.keras.optimizers.Adam(0.001),
-        #     loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-        #     metrics = [tf.keras.metrics.SparseCategoricalAccuracy()],
-        # )
         model.summary()
         model.fit(
             train_data[0],
